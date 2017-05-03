@@ -15,7 +15,7 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.impl
+package org.gtri.shibboleth.idp.totp.authn.impl
 
 import groovy.util.logging.Slf4j
 import org.opensaml.messaging.context.BaseContext

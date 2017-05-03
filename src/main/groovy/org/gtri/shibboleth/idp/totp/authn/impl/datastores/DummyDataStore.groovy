@@ -15,10 +15,10 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.impl.datastores
+package org.gtri.shibboleth.idp.totp.authn.impl.datastores
 
-import org.gtri.shibboleth.idp.g2f.authn.api.DeviceDataStore
-import org.gtri.shibboleth.idp.g2f.authn.impl.G2fUserContext
+import org.gtri.shibboleth.idp.totp.authn.api.DeviceDataStore
+import org.gtri.shibboleth.idp.totp.authn.impl.G2fUserContext
 import groovy.json.JsonOutput
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired

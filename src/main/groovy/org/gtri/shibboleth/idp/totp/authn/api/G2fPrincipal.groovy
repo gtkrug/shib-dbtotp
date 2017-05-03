@@ -15,7 +15,7 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.api
+package org.gtri.shibboleth.idp.totp.authn.api
 
 import com.google.common.base.MoreObjects
 import groovy.transform.EqualsAndHashCode

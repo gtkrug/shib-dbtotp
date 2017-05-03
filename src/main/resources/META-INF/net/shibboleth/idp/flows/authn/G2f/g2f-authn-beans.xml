@@ -20,7 +20,7 @@
     <alias name="%{g2f.dataStore}" alias="deviceDataStore" />
 
     <bean id="realDataStore"
-          class="org.gtri.shibboleth.idp.g2f.authn.impl.datastores.TBDDataStore"
+          class="org.gtri.shibboleth.idp.totp.authn.impl.datastores.SQLDataStore"
           c:endPoint="%{g2f.datastore.endPoint:#{null}}"
           c:username="%{g2f.datastore.username:#{null}}"
           c:password="%{g2f.datastore.password:#{null}}"
@@ -30,20 +30,19 @@
     <!-- U2F flow beans -->
     <bean id="initialize2ndFactor"
           scope="prototype"
-          class="org.gtri.shibboleth.idp.g2f.authn.impl.Initialize2ndFactor"
+          class="org.gtri.shibboleth.idp.totp.authn.impl.Initialize2ndFactor"
           p:httpServletRequest-ref="shibboleth.HttpServletRequest" />
 
     <bean id="validate2ndFactor"
           scope="prototype"
-          class="org.gtri.shibboleth.idp.g2f.authn.impl.Validate2ndFactor"
+          class="org.gtri.shibboleth.idp.totp.authn.impl.Validate2ndFactor"
           p:httpServletRequest-ref="shibboleth.HttpServletRequest">
-        <property name="MyAttrResolver" p:resolverObject-ref="shibboleth.AttributeResolverService" />
     </bean> 
 
     <!-- Default username comes from previous c14n or session. -->
-    <bean id="org.gtri.shibboleth.idp.g2f.UsernameLookupStrategy"
+    <bean id="org.gtri.shibboleth.idp.totp.UsernameLookupStrategy"
           class="net.shibboleth.idp.session.context.navigate.CanonicalUsernameLookupStrategy" />
 
-    <alias name="org.gtri.shibboleth.idp.g2f.UsernameLookupStrategy" alias="CanonicalUsernameStrategy" />
+    <alias name="org.gtri.shibboleth.idp.totp.UsernameLookupStrategy" alias="CanonicalUsernameStrategy" />
 
 </beans>

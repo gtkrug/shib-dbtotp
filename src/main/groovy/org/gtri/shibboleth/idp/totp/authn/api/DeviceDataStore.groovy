@@ -15,8 +15,8 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.api
-import org.gtri.shibboleth.idp.g2f.authn.impl.G2fUserContext
+package org.gtri.shibboleth.idp.totp.authn.api
+import org.gtri.shibboleth.idp.totp.authn.impl.G2fUserContext
 
 interface DeviceDataStore {
     def beginAuthentication(G2fUserContext userContext)

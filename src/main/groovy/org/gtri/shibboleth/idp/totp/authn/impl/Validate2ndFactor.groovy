@@ -15,10 +15,10 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.impl
+package org.gtri.shibboleth.idp.totp.authn.impl
 
-import org.gtri.shibboleth.idp.g2f.authn.api.DeviceDataStore
-import org.gtri.shibboleth.idp.g2f.authn.api.G2fPrincipal
+import org.gtri.shibboleth.idp.totp.authn.api.DeviceDataStore
+import org.gtri.shibboleth.idp.totp.authn.api.G2fPrincipal
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
 import net.shibboleth.idp.authn.AbstractValidationAction

@@ -15,20 +15,16 @@
  *
  */
 
-package org.gtri.shibboleth.idp.g2f.authn.impl
+package org.gtri.shibboleth.idp.totp.authn.impl
 
 import com.google.common.base.Function
 import com.sun.istack.internal.NotNull
-import org.gtri.shibboleth.idp.g2f.authn.api.DeviceDataStore
+import org.gtri.shibboleth.idp.totp.authn.api.DeviceDataStore
 import groovy.util.logging.Slf4j
 import net.shibboleth.idp.authn.AbstractExtractionAction
 import net.shibboleth.idp.authn.AuthnEventIds
 import net.shibboleth.idp.authn.context.AuthenticationContext
 import net.shibboleth.idp.authn.context.UsernamePasswordContext
-import net.shibboleth.idp.attribute.resolver.context.AttributeResolutionContext
-import net.shibboleth.idp.attribute.StringAttributeValue
-//import net.shibboleth.idp.attribute.resolver.AttributeResolver
-import net.shibboleth.ext.spring.service.ReloadableSpringService
 import net.shibboleth.idp.profile.ActionSupport
 import net.shibboleth.idp.session.context.navigate.CanonicalUsernameLookupStrategy
 import net.shibboleth.utilities.java.support.annotation.constraint.NotEmpty
@@ -53,12 +49,6 @@ public class Initialize2ndFactor extends AbstractExtractionAction {
     @Nullable
     @NotEmpty
     private String username
-
-    /** Attribute Resolver. */
-    @Autowired
-    @Qualifier('MyAttrResolver')
-    @Nonnull
-    private ReloadableSpringService resolver
 
     /** G2F application ID */
     @Value('%{g2f.appId}')
@@ -101,18 +91,12 @@ public class Initialize2ndFactor extends AbstractExtractionAction {
 
         try {
             log.debug("{} Principal name {}", getLogPrefix(), username)
-            attrContext = authenticationContext.getSubcontext("net.shibboleth.idp.attribute.resolver.context.AttributeResolutionContext", true);
-            attrContext.setPrincipal (username);
-            attrContext.getRequestedIdPAttributeNames().add("SecondFactorCode")
-            attrContext.resolveAttributes(resolver)
-            attribute = attrContext.getResolvedIdPAttributes().get("SecondFactorCode");
 
-            log.debug("User {} has a SecondFactorCode of {}", username, attribute.getValues().get(0));
+            log.debug("User {} entered a SecondFactorCode of {}", username, );
 
             if (!g2fUserContext.initialized) {
                 g2fUserContext.username = username
                 g2fUserContext.appId = appId
-                g2fUserContext.key = key
                 g2fUserContext.initialized = true
             }
             def res = dataStore.beginAuthentication(g2fUserContext)
